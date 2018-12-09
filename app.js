@@ -29,24 +29,29 @@ app.post('/alerts', (req, res) => {
     const alerts = utils.parseAlerts(req.body)
 
     if (!alerts) {
+        res.json({'result': 'no alerts found in payload'})
+        return
+    }
+
+    const roomId = utils.getRoomForReceiver(req.body.receiver)
+    if (!roomId) {
+        res.json({'result': 'no rooms configured for this receiver'})
         return
     }
 
     alerts.forEach(alert => {
-        // Post the event to the room
-        const content = {
-            'body': alert,
-            'msgtype': 'm.notice',
-        }
         matrixClient.sendEvent(
-            process.env.MATRIX_ROOM,
+            roomId,
             'm.room.message',
-            content,
+            {
+                'body': alert,
+                'msgtype': 'm.notice',
+            },
             '',
         ).done((err, res) => {})
     })
 
-    res.json({'status': 'ok'})
+    res.json({'result': 'ok'})
 })
 
 app.listen(process.env.APP_PORT, () => {})

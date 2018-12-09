@@ -1,5 +1,23 @@
 const utils = {
 
+    getRoomForReceiver: receiver => {
+        /*
+        Get the right roomId for the given receiver from MATRIX_ROOMS configuration item.
+
+        For is <receiver/roomId> separated by pipe for multiple receiver/rooms.
+         */
+        const roomConfigs = process.env.MATRIX_ROOMS.split('|')
+        let roomId = false
+        for (let config of roomConfigs) {
+            const roomConfig = config.split('/')
+            if (roomConfig[0] === receiver) {
+                roomId = roomConfig[1]
+                break
+            }
+        }
+        return roomId
+    },
+
     formatAlert: data => {
         /*
         Format a single alert into a message string.
