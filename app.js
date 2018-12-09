@@ -1,5 +1,6 @@
 const express = require('express')
 const matrix = require('matrix-js-sdk')
+const utils = require('./utils')
 
 // Config
 require('dotenv').config()
@@ -13,6 +14,7 @@ const matrixClient = matrix.createClient({
     baseUrl: process.env.MATRIX_HOMESERVER_URL,
     accessToken: process.env.MATRIX_TOKEN,
     userId: process.env.MATRIX_USER,
+    localTimeoutMs: 10000,
 })
 
 // Routes
@@ -24,19 +26,26 @@ app.post('/alerts', (req, res) => {
         res.status(403).end()
         return
     }
-    const data = req.body
+    const alerts = utils.parseAlerts(req.body)
 
-    // Post the event to the room
-    const content = {
-        'body': JSON.stringify(data),
-        'msgtype': 'm.text',
+    if (!alerts) {
+        return
     }
-    matrixClient.sendEvent(
-        process.env.MATRIX_ROOM,
-        'm.room.message',
-        content,
-        '',
-    ).done((err, res) => {})
+
+    alerts.forEach(alert => {
+        // Post the event to the room
+        const content = {
+            'body': alert,
+            'msgtype': 'm.notice',
+        }
+        matrixClient.sendEvent(
+            process.env.MATRIX_ROOM,
+            'm.room.message',
+            content,
+            '',
+        ).done((err, res) => {})
+    })
+
     res.json({'status': 'ok'})
 })
 
