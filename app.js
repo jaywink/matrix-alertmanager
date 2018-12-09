@@ -17,6 +17,18 @@ const matrixClient = matrix.createClient({
     localTimeoutMs: 10000,
 })
 
+// Ensure in right rooms
+matrixClient.getJoinedRooms().then(rooms => {
+    const joinedRooms = rooms.joined_rooms
+    const roomConfigs = process.env.MATRIX_ROOMS.split('|')
+    roomConfigs.forEach(roomConfig => {
+        const room = roomConfig.split('/')
+        if (joinedRooms.indexOf(room[1]) === -1) {
+            matrixClient.joinRoom(room[1])
+        }
+    })
+})
+
 // Routes
 app.get('/', (req, res) => res.send('Hey 👋'))
 
@@ -48,7 +60,7 @@ app.post('/alerts', (req, res) => {
                 'msgtype': 'm.notice',
             },
             '',
-        ).done((err, res) => {})
+        )
     })
 
     res.json({'result': 'ok'})
