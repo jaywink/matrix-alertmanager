@@ -52,15 +52,19 @@ app.post('/alerts', (req, res) => {
     }
 
     alerts.forEach(alert => {
-        matrixClient.sendEvent(
-            roomId,
-            'm.room.message',
-            {
-                'body': alert,
-                'msgtype': 'm.notice',
-            },
-            '',
-        )
+        try {
+            matrixClient.sendEvent(
+                roomId,
+                'm.room.message',
+                {
+                    'body': alert,
+                    'msgtype': 'm.notice',
+                },
+                '',
+            )
+        } catch (err) {
+            console.error(err)
+        }
     })
 
     res.json({'result': 'ok'})
