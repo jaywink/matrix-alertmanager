@@ -2,11 +2,11 @@
   "name": "matrix-alertmanager",
   "version": "0.0.1",
   "description": "Prometheus Alertmanager bot for Matrix",
-  "main": "app.js",
+  "main": "src/app.js",
   "scripts": {
-    "dev": "node_modules/.bin/nodemon app.js localhost 3000",
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node app.js"
+    "dev": "node_modules/.bin/nodemon src/app.js localhost 3000",
+    "test": "node_modules/.bin/mocha tests/",
+    "start": "node src/app.js"
   },
   "repository": {
     "type": "git",
@@ -21,8 +21,11 @@
   "author": "Jason Robinson",
   "license": "MIT",
   "devDependencies": {
+    "chai": "^4.2.0",
     "eslint": "^5.9.0",
-    "nodemon": "^1.18.7"
+    "mocha": "^5.2.0",
+    "nodemon": "^1.18.7",
+    "sinon": "^7.2.2"
   },
   "dependencies": {
     "dotenv": "^6.1.0",
