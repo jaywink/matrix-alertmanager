@@ -1,5 +1,7 @@
 ![](https://img.shields.io/gitlab/pipeline/jaywink/matrix-alertmanager.svg?gitlab_url=https%3A%2F%2Fgit.feneas.org) [![](https://img.shields.io/docker/pulls/jaywink/matrix-alertmanager.svg)](https://cloud.docker.com/u/jaywink/repository/docker/jaywink/matrix-alertmanager) [![](https://img.shields.io/matrix/matrix-alertmanager:feneas.org.svg?server_fqdn=feneas.org)](https://matrix.to/#/#matrix-alertmanager:feneas.org)
 
+[![issue tracker](https://img.shields.io/badge/issue%20tracker-gitlab-orange.svg)](https://git.feneas.org/jaywink/matrix-alertmanager/issues)
+
 # Matrix-Alertmanager
 
 ![](./screenshot.png)
