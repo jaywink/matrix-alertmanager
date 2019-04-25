@@ -3,6 +3,7 @@
 [![issue tracker](https://img.shields.io/badge/issue%20tracker-gitlab-orange.svg)](https://git.feneas.org/jaywink/matrix-alertmanager/issues)
 
 # Matrix-Alertmanager
+foobar
 
 ![](./screenshot.png)
 
