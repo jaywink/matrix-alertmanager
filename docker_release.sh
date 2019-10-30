@@ -9,7 +9,7 @@ else
 fi
 
 docker login
-docker build -t jaywink/matrix-alertmanager .
+docker build -t jaywink/matrix-alertmanager:${tag} .
 docker push jaywink/matrix-alertmanager:${tag}
 
 if [[ "$tag" == "latest" ]]; then
