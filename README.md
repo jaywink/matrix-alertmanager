@@ -38,6 +38,22 @@ receivers:
 
 The secret key obviously should match the one in the alertmanager configuration.
 
+### Prometheus rules
+
+Add some styling to your prometheus rules
+
+```yaml
+rules:
+- alert: High Memory Usage of Container
+  annotations:
+    description: Container named <strong>{{\$labels.container_name}}</strong> in <strong>{{\$labels.pod_name}}</strong> in <strong>{{\$labels.namespace}}</strong> is using more than 75% of Memory Limit
+  expr: |
+    ((( sum(container_memory_usage_bytes{image!=\"\",container_name!=\"POD\", namespace!=\"kube-system\"}) by (namespace,container_name,pod_name, instance)  / sum(container_spec_memory_limit_bytes{image!=\"\",container_name!=\"POD\",namespace!=\"kube-system\"}) by (namespace,container_name,pod_name, instance) ) * 100 ) < +Inf ) > 75
+  for: 5m
+  labels:
+    team: dev
+```
+
 NOTE! Currently the bot cannot talk HTTPS, so you need to have a reverse proxy in place to terminate SSL, or use unsecure unencrypted connections.
 
 ## TODO

@@ -25,9 +25,9 @@ const utils = {
         let parts = []
 
         if (data.status === 'firing') {
-            parts.push('FIRING:')
+            parts.push('<strong><font color=\"#ff0000\">FIRING:</font></strong>')
         } else if (data.status === 'resolved') {
-            parts.push('RESOLVED:')
+            parts.push('<strong><font color=\"#33cc33\">RESOLVED:</font></strong>')
         } else {
             parts.push(data.status.toUpperCase() + ':')
         }
@@ -40,8 +40,8 @@ const utils = {
             }
         }
 
-        parts.push('\n', data.annotations.description)
-        parts.push('\n', data.generatorURL)
+        parts.push('<br>', data.annotations.description)
+        parts.push('<br><a href="', data.generatorURL,'">Alert link</a>')
 
         return parts.join(' ')
     },

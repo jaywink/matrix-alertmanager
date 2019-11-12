@@ -1,4 +1,5 @@
 const matrix = require('matrix-js-sdk')
+const striptags = require('striptags');
 
 const client = {
     init: function() {
@@ -28,8 +29,10 @@ const client = {
                 roomId,
                 'm.room.message',
                 {
-                    'body': alert,
-                    'msgtype': 'm.notice',
+                    'body': striptags(alert),
+                    'formatted_body': alert,
+                    'msgtype': 'm.text',
+                    'format': 'org.matrix.custom.html'
                 },
                 '',
             )
