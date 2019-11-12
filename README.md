@@ -14,6 +14,7 @@ Main features:
 * Configurable room per alert receiver
 * Automatic joining of configured public rooms on start up
 * Secret key authentication with Alertmanager
+* HTML formatted messages
 
 ## How to use
 
@@ -60,7 +61,6 @@ NOTE! Currently the bot cannot talk HTTPS, so you need to have a reverse proxy i
 
 * HTTPS support without reverse proxy
 * Better test coverage
-* Nicer formatting of messages
 * Registering an account instead of having to use an existing account
 * Joining rooms that are configured automatically
 
@@ -68,9 +68,13 @@ NOTE! Currently the bot cannot talk HTTPS, so you need to have a reverse proxy i
 
 Node 10, Express, Matrix JS SDK
 
+## Help
+
+Come chat in the https://matrix.to/#/#matrix-alertmanager:federator.dev room!
+
 ## Author
 
-Jason Robinson / https://jasonrobinson.me / @jaywink:feneas.org
+Jason Robinson / https://jasonrobinson.me / @jaywink:federator.dev
 
 ## License
 
