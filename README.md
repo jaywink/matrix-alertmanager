@@ -2,6 +2,8 @@
 
 [![issue tracker](https://img.shields.io/badge/issue%20tracker-gitlab-orange.svg)](https://git.feneas.org/jaywink/matrix-alertmanager/issues)
 
+GitHub mirror: https://github.com/jaywink/matrix-alertmanager
+
 # Matrix-Alertmanager
 
 ![](./screenshot.png)
