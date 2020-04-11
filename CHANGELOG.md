@@ -1,5 +1,11 @@
 # Changelog
 
+## unreleased
+
+### Changed
+
+- Default port 3000 is now set in the docker image by @ptman
+
 ## 0.1.0 - 2019-11-12
 
 ### Changed
