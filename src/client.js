@@ -1,7 +1,21 @@
 const matrix = require('matrix-js-sdk')
-const striptags = require('striptags');
+const striptags = require('striptags')
+
+let joinedRoomsCache = []
 
 const client = {
+    ensureInRoom: async function(roomId) {
+        if (joinedRoomsCache.indexOf(roomId === -1)) {
+            try {
+                const room = await client.connection.joinRoom(roomId)
+                if (room) {
+                    joinedRoomsCache.push(room.roomId)
+                }
+            } catch (ex) {
+                console.warn(`Could not join room ${roomId} - ${ex}`)
+            }
+        }
+    },
     init: function() {
         // Init Matrix client
         this.connection = matrix.createClient({
@@ -18,24 +32,27 @@ const client = {
             roomConfigs.forEach(roomConfig => {
                 const room = roomConfig.split('/')
                 if (joinedRooms.indexOf(room[1]) === -1) {
-                    client.connection.joinRoom(room[1])
+                    this.ensureInRoom(room[1])
                 }
             })
         })
     },
     sendAlert: function(roomId, alert) {
         try {
-            this.connection.sendEvent(
-                roomId,
-                'm.room.message',
-                {
-                    'body': striptags(alert),
-                    'formatted_body': alert,
-                    'msgtype': 'm.text',
-                    'format': 'org.matrix.custom.html'
-                },
-                '',
-            )
+            this.ensureInRoom(roomId)
+                .then(() => {
+                    this.connection.sendEvent(
+                        roomId,
+                        'm.room.message',
+                        {
+                            'body': striptags(alert),
+                            'formatted_body': alert,
+                            'msgtype': 'm.text',
+                            'format': 'org.matrix.custom.html'
+                        },
+                        '',
+                    )
+                })
         } catch (err) {
             // eslint-disable-next-line no-console
             console.error(err)

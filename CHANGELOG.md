@@ -2,6 +2,10 @@
 
 ## unreleased
 
+### Added
+
+- Bot will now try to join rooms it is not in always before sending a message.
+
 ### Changed
 
 - Default port 3000 is now set in the docker image by @ptman

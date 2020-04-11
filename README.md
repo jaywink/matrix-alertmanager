@@ -12,11 +12,11 @@ A bot to receive Prometheus Alertmanager webhook events and forward them to chos
 
 Main features:
 
-* Uses pre-created Matrix user to send alerts using token auth
-* Configurable room per alert receiver
-* Automatic joining of configured public rooms on start up
-* Secret key authentication with Alertmanager
-* HTML formatted messages
+* Uses pre-created Matrix user to send alerts using token auth.
+* Configurable room per alert receiver.
+* Automatic joining of configured rooms. Private rooms require an invite.
+* Secret key authentication with Alertmanager.
+* HTML formatted messages.
 
 ## How to use
 
@@ -61,10 +61,7 @@ NOTE! Currently the bot cannot talk HTTPS, so you need to have a reverse proxy i
 
 ## TODO
 
-* HTTPS support without reverse proxy
-* Better test coverage
 * Registering an account instead of having to use an existing account
-* Joining rooms that are configured automatically
 
 ## Tech
 
