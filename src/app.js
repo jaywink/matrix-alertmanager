@@ -8,12 +8,18 @@ require('dotenv').config()
 // App
 const app = express()
 app.use(express.json())
-
-// Initialize Matrix client
-client.init()
-
 // Routes
 app.get('/', routes.getRoot)
 app.post('/alerts', routes.postAlerts)
+// Initialize Matrix client
+client.init().then(() => {
+    // eslint-disable-next-line no-console
+    console.log('matrix-alertmanager initialized and ready')
+    app.listen(process.env.APP_PORT, () => {})
+}).catch(e => {
+    // eslint-disable-next-line no-console
+    console.error('initialization failed')
+    // eslint-disable-next-line no-console
+    console.error(e)
+})
 
-app.listen(process.env.APP_PORT, () => {})

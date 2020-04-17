@@ -16,47 +16,39 @@ const client = {
             }
         }
     },
-    init: function() {
+    init: async function() {
         // Init Matrix client
         this.connection = matrix.createClient({
             baseUrl: process.env.MATRIX_HOMESERVER_URL,
             accessToken: process.env.MATRIX_TOKEN,
             userId: process.env.MATRIX_USER,
-            localTimeoutMs: 10000,
+            localTimeoutMs: 30000,
         })
 
         // Ensure in right rooms
-        this.connection.getJoinedRooms().then(rooms => {
-            const joinedRooms = rooms.joined_rooms
-            const roomConfigs = process.env.MATRIX_ROOMS.split('|')
-            roomConfigs.forEach(roomConfig => {
-                const room = roomConfig.split('/')
-                if (joinedRooms.indexOf(room[1]) === -1) {
-                    this.ensureInRoom(room[1])
-                }
-            })
+        const rooms = await this.connection.getJoinedRooms()
+        const joinedRooms = rooms.joined_rooms
+        const roomConfigs = process.env.MATRIX_ROOMS.split('|')
+        roomConfigs.forEach(async roomConfig => {
+            const room = roomConfig.split('/')
+            if (joinedRooms.indexOf(room[1]) === -1) {
+                await this.ensureInRoom(room[1])
+            }
         })
     },
-    sendAlert: function(roomId, alert) {
-        try {
-            this.ensureInRoom(roomId)
-                .then(() => {
-                    this.connection.sendEvent(
-                        roomId,
-                        'm.room.message',
-                        {
-                            'body': striptags(alert),
-                            'formatted_body': alert,
-                            'msgtype': 'm.text',
-                            'format': 'org.matrix.custom.html'
-                        },
-                        '',
-                    )
-                })
-        } catch (err) {
-            // eslint-disable-next-line no-console
-            console.error(err)
-        }
+    sendAlert: async function(roomId, alert) {
+        await this.ensureInRoom(roomId)
+        return this.connection.sendEvent(
+            roomId,
+            'm.room.message',
+            {
+                'body': striptags(alert),
+                'formatted_body': alert,
+                'msgtype': 'm.text',
+                'format': 'org.matrix.custom.html'
+            },
+            '',
+        )
     },
 }
 

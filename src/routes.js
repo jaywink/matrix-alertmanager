@@ -5,7 +5,7 @@ const routes = {
     getRoot: (req, res) => {
         res.send('Hey 👋')
     },
-    postAlerts: (req, res) => {
+    postAlerts: async (req, res) => {
         const secret = req.query.secret
         if (secret !== process.env.APP_ALERTMANAGER_SECRET) {
             res.status(403).end()
@@ -24,11 +24,16 @@ const routes = {
             return
         }
 
-        alerts.forEach(alert => {
-            client.sendAlert(roomId, alert)
-        })
-
-        res.json({'result': 'ok'})
+        try {
+            const promises = alerts.map(alert => client.sendAlert(roomId, alert))
+            await Promise.all(promises)
+            res.json({'result': 'ok'})
+        } catch (e) {
+            // eslint-disable-next-line no-console
+            console.error(e)
+            res.status(500)
+            res.json({'result': 'error'})
+        }
     },
 }
 

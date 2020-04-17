@@ -1,5 +1,20 @@
 # Changelog
 
+## [Unreleased]
+
+### Added
+
+none
+
+### Changed
+
+- Application will wait for initialization to complete before serving requests
+  (ensures bot can connect to the homeserver and join the rooms)
+- Wait for message to send (or fail to send) before returning a success/error
+  message to the caller
+
+
+## 0.1.0 - 2019-11-12
 ## 0.2.0 - 2020-04-11
 
 ### Added
