@@ -23,3 +23,4 @@ client.init().then(() => {
     console.error(e)
 })
 
+module.exports = app
