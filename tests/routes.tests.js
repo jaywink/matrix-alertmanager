@@ -24,7 +24,7 @@ describe('routes', function() {
     })
 
     describe('postAlerts', function() {
-        before(function() {
+        before(async() => {
             this.clientStub = sinon.stub(client, 'sendAlert').returns(true)
             this.req = {
                 body: fixtures.alerts,
@@ -37,13 +37,13 @@ describe('routes', function() {
             }
         })
 
-        it('calls client sendAlert for each alert', function() {
+        it('calls client sendAlert for each alert', () => {
             routes.postAlerts(this.req, this.res)
 
             expect(this.clientStub.calledTwice).to.be.true
         })
 
-        it('calls parseAlerts', function() {
+        it('calls parseAlerts', () => {
             const parseStub = sinon.stub(utils, 'parseAlerts').returns([])
 
             routes.postAlerts(this.req, this.res)
@@ -54,14 +54,14 @@ describe('routes', function() {
             parseStub.restore()
         })
 
-        it('returns ok', function() {
-            routes.postAlerts(this.req, this.res)
+        it('returns ok', async() => {
+            await routes.postAlerts(this.req, this.res)
 
             expect(this.res.json.calledOnce).to.be.true
             expect(this.res.json.firstCall.args[0]).to.eql({'result': 'ok'})
         })
 
-        afterEach(function() {
+        afterEach(() => {
             this.clientStub.reset()
             sinon.reset(this.res.json)
         })
