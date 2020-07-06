@@ -2,19 +2,13 @@
 
 ## [Unreleased]
 
-### Added
-
-none
-
 ### Changed
 
 - Application will wait for initialization to complete before serving requests
-  (ensures bot can connect to the homeserver and join the rooms)
+  (ensures bot can connect to the homeserver and join the rooms) by @abelxluck
 - Wait for message to send (or fail to send) before returning a success/error
-  message to the caller
+  message to the caller by @abelxluck
 
-
-## 0.1.0 - 2019-11-12
 ## 0.2.0 - 2020-04-11
 
 ### Added
