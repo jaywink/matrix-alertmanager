@@ -25,6 +25,9 @@ const utils = {
         let parts = []
 
         if (data.status === 'firing') {
+            if (process.env.MENTION_ROOM === "1") {
+                parts.push('@room', '<br>')
+            }
             parts.push('<strong><font color=\"#ff0000\">FIRING:</font></strong>')
         } else if (data.status === 'resolved') {
             parts.push('<strong><font color=\"#33cc33\">RESOLVED:</font></strong>')
