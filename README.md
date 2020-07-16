@@ -17,12 +17,17 @@ Main features:
 * Automatic joining of configured rooms. Private rooms require an invite.
 * Secret key authentication with Alertmanager.
 * HTML formatted messages.
+* Optionally mentions `@room` on firing alerts
 
 ## How to use
 
 ### Configuration
 
-Whether running manually or via the Docker image, the configuration is set via environment variables. When running manually, copy `.env.default` into `.env`, set the values and they will be loaded automatically. When using the Docker image, set the environment variables when running the container.
+Whether running manually or via the Docker image, the configuration is set 
+via environment variables. When running manually, copy `.env.default`
+into `.env`, set the values and they will be loaded automatically. 
+When using the Docker image, set the environment variables when running 
+the container.
 
 ### Docker
 

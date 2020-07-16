@@ -1,5 +1,11 @@
 # Changelog
 
+## Unreleased
+
+### Added
+
+- Add option to mention room when alert is firing by @sbruder
+
 ## 0.3.0-rc1 - 2020-07-06
 
 ### Changed
