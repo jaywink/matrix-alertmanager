@@ -23,7 +23,7 @@
   "devDependencies": {
     "chai": "^4.2.0",
     "eslint": "^7.4.0",
-    "mocha": "^8.0.1",
+    "mocha": "^8.1.1",
     "nodemon": "^2.0.4",
     "sinon": "^9.0.2"
   },
