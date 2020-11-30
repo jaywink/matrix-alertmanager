@@ -1,5 +1,11 @@
 # Changelog
 
+## unreleased
+
+### Changed
+
+- Improve formatting of alerts by using more attributes by @ssams 
+
 ## 0.3.0 - 2020-07-17
 
 ### Added
