@@ -23,27 +23,49 @@ const utils = {
         Format a single alert into a message string.
          */
         let parts = []
+        //console.log(data)
 
         if (data.status === 'firing') {
             if (process.env.MENTION_ROOM === "1") {
                 parts.push('@room', '<br>')
             }
-            parts.push('<strong><font color=\"#ff0000\">FIRING:</font></strong>')
+            let color = (function(severity) {
+                switch(severity) {
+                  case 'warning':
+                    return '#ffc107'; // orange
+                  case 'none':
+                    return '#17a2b8'; // blue
+                  default:
+                    return '#dc3545'; // red
+                }
+              })(data.labels.severity);
+            parts.push('<strong><font color=\"', color, '\">FIRING:</font></strong>')
         } else if (data.status === 'resolved') {
             parts.push('<strong><font color=\"#33cc33\">RESOLVED:</font></strong>')
         } else {
             parts.push(data.status.toUpperCase() + ':')
         }
 
-        if (data.labels.host !== undefined) {
-            parts.push(data.labels.host)
-        } else {
-            if (data.labels.instance !== undefined) {
-                parts.push(data.labels.instance)
+        // name and location of occurrence
+        if (data.labels.alertname !== undefined) {
+            parts.push('<i>', data.labels.alertname, '</i>')
+            if (data.labels.host !== undefined || data.labels.instance !== undefined) {
+                parts.push(' at ')
             }
         }
+        if (data.labels.host !== undefined) {
+            parts.push(data.labels.host)
+        } else if (data.labels.instance !== undefined) {
+            parts.push(data.labels.instance)
+        }
 
-        parts.push('<br>', data.annotations.description)
+        // additional descriptive content
+        if (data.annotations.message !== undefined) {
+            parts.push('<br>', data.annotations.message.replace("\n", "<br>"))
+        }
+        if (data.annotations.description !== undefined) {
+            parts.push('<br>', data.annotations.description)
+        }
         parts.push('<br><a href="', data.generatorURL,'">Alert link</a>')
 
         return parts.join(' ')
