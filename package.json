@@ -18,6 +18,9 @@
     "prometheus",
     "bot"
   ],
+  "engines": {
+    "node": ">= 14"
+  },
   "author": "Jason Robinson",
   "license": "MIT",
   "devDependencies": {
