@@ -5,7 +5,7 @@
 ### Changed
 
 - Improve formatting of alerts by using more attributes by @ssams
-- Update Node version to 14. 
+- Update Node version to 14 and bump various dependencies.
 
 ## 0.3.0 - 2020-07-17
 
