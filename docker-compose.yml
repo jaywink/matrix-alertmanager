@@ -1,0 +1,18 @@
+version: '1'
+services:
+  matrix_alertmanager_bot:
+    build:
+      context: .
+    image: tainguyenbp/matrix-alertmanager-bot:0.4.0
+    container_name: matrix_alertmanager_bot
+    ports:
+      - 8008:8008
+      - 8007:8007
+    environment:
+      APP_PORT: "8007"
+      APP_ALERTMANAGER_SECRET: "123456789"
+      MATRIX_HOMESERVER_URL: "https://alert.hotromaytinhit.tech"
+      MATRIX_ROOMS: "element-matrix/!ZEgSx45KQufnRf8W:alert.hotromaytinhit.tech"
+      MATRIX_USER: "@bot.tainguyenbp:alert.hotromaytinhit.tech"
+      MATRIX_TOKEN: "AQeHNqDwpeVsEc3Sz7dypSkTeuZVLRZx"
+      MENTION_ROOM: "1"
