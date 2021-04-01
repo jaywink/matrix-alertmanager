@@ -68,7 +68,14 @@ const utils = {
         if (data.annotations.description !== undefined) {
             parts.push('<br>', data.annotations.description)
         }
-        parts.push('<br><a href="', data.generatorURL,'">Alert link</a>')
+        
+        if (data.labels.severity === 'critical') {
+            parts.push('<br><b>Severity: <font color="#dc3545">critical</font></b>')
+        } else if (data.labels.severity === 'warning') {
+            parts.push('<br><b>Severity: <font color="#ffc107">warning</font></b>')
+        }        
+        
+
 
         return parts.join(' ')
     },
