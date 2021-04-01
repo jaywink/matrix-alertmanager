@@ -75,7 +75,13 @@ const utils = {
             parts.push('<br><b>Severity: <font color="#ffc107">warning</font></b>')
         }        
         
-
+        const convertstartsAt = new Date(data.startsAt)
+        parts.push('<br><b>Start time: </b>', convertstartsAt.toLocaleString("en-US", {timeZone: "Asia/Jakarta"}))
+        
+        
+        parts.push('<br>URL Prom: <a href="', data.generatorURL,'">Alert link</a>')
+        
+        
 
         return parts.join(' ')
     },
