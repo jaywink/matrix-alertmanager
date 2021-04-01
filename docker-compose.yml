@@ -7,9 +7,9 @@ services:
     container_name: matrix_alertmanager_bot
     ports:
       - 8008:8008
-      - 8007:8007
+      - 3000:3000
     environment:
-      APP_PORT: "8007"
+      APP_PORT: "3000"
       APP_ALERTMANAGER_SECRET: "hgH2K2L4vV6qY8S8ydFtzdUNYYdPrrw9"
       MATRIX_HOMESERVER_URL: "https://alert.hotromaytinhit.tech"
       MATRIX_ROOMS: "matrix-/!ZEgSx45KQufnRf8W:alert.hotromaytinhit.tech"
