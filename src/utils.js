@@ -76,13 +76,13 @@ const utils = {
         }        
         
         const convertstartsAt = new Date(data.startsAt)
-        parts.push('<br><b>Start time: </b>', convertstartsAt.toLocaleString("en-US", {timeZone: "Asia/Jakarta"}))
+        parts.push('<br><b>Started: </b>', convertstartsAt.toLocaleString("en-US", {timeZone: "Asia/Jakarta"}))
         
+        const convertendsAt = new Date(data.endsAt)
+        parts.push('<br><b>Ends: </b>', convertendsAt.toLocaleString("en-US", {timeZone: "Asia/Jakarta"}))
         
         parts.push('<br>URL Prom: <a href="', data.generatorURL,'">Alert link</a>')
         
-        
-
         return parts.join(' ')
     },
 
