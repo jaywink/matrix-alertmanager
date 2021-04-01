@@ -41,9 +41,9 @@ const utils = {
                     return '#dc3545'; // red
                 }
               })(data.labels.severity);
-            parts.push('<strong><font color=\"' + color + '\">FIRING:</font></strong>')
+            parts.push('<strong>🔥🔥🔥 <font color=\"' + color + '\">FIRING:</font></strong>')
         } else if (data.status === 'resolved') {
-            parts.push('<strong><font color=\"#33cc33\">RESOLVED:</font></strong>')
+            parts.push('<strong>✅✅✅ <font color=\"#33cc33\">RESOLVED:</font></strong>')
         } else {
             parts.push(data.status.toUpperCase() + ':')
         }
