@@ -34,7 +34,7 @@ const utils = {
                   case 'warning':
                     return '#ffc107'; // orange
                   case 'critical':
-                    return '#dc3545';                         
+                    return '#dc3545'; // red                       
                   case 'none':
                     return '#17a2b8'; // blue
                   default:
