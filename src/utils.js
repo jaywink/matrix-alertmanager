@@ -33,6 +33,8 @@ const utils = {
                 switch(severity) {
                   case 'warning':
                     return '#ffc107'; // orange
+                  case 'critical':
+                    return '#dc3545';                         
                   case 'none':
                     return '#17a2b8'; // blue
                   default:
