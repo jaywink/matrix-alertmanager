@@ -33,15 +33,17 @@ const utils = {
                 switch(severity) {
                   case 'warning':
                     return '#ffc107'; // orange
+                  case 'critical':
+                    return '#dc3545'; // red                       
                   case 'none':
                     return '#17a2b8'; // blue
                   default:
                     return '#dc3545'; // red
                 }
               })(data.labels.severity);
-            parts.push('<strong><font color=\"' + color + '\">FIRING:</font></strong>')
+            parts.push('<strong>🔥🔥🔥 <font color=\"' + color + '\">FIRING:</font></strong>')
         } else if (data.status === 'resolved') {
-            parts.push('<strong><font color=\"#33cc33\">RESOLVED:</font></strong>')
+            parts.push('<strong>✅✅✅ <font color=\"#33cc33\">RESOLVED:</font></strong>')
         } else {
             parts.push(data.status.toUpperCase() + ':')
         }
@@ -66,8 +68,21 @@ const utils = {
         if (data.annotations.description !== undefined) {
             parts.push('<br>', data.annotations.description)
         }
-        parts.push('<br><a href="', data.generatorURL,'">Alert link</a>')
-
+        
+        if (data.labels.severity === 'critical') {
+            parts.push('<br><b>Severity: <font color="#dc3545">critical</font></b>')
+        } else if (data.labels.severity === 'warning') {
+            parts.push('<br><b>Severity: <font color="#ffc107">warning</font></b>')
+        }        
+        
+        const convertstartsAt = new Date(data.startsAt)
+        parts.push('<br><b>Started: </b>', convertstartsAt.toLocaleString("en-US", {timeZone: "Asia/Jakarta"}))
+        
+        const convertendsAt = new Date(data.endsAt)
+        parts.push('<br><b>Ends: </b>', convertendsAt.toLocaleString("en-US", {timeZone: "Asia/Jakarta"}))
+        
+        parts.push('<br>URL Prom: <a href="', data.generatorURL,'">Alert link</a>')
+        
         return parts.join(' ')
     },
 
