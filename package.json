@@ -34,7 +34,7 @@
   "dependencies": {
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
-    "matrix-js-sdk": "^9.10.0",
+    "matrix-js-sdk": "^12.4.1",
     "striptags": "^3.1.1"
   }
 }
