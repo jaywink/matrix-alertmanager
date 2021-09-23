@@ -1,8 +1,4 @@
-![](https://img.shields.io/gitlab/pipeline/jaywink/matrix-alertmanager.svg?gitlab_url=https%3A%2F%2Fgit.feneas.org) [![](https://img.shields.io/docker/pulls/jaywink/matrix-alertmanager.svg)](https://cloud.docker.com/u/jaywink/repository/docker/jaywink/matrix-alertmanager) [![](https://img.shields.io/matrix/matrix-alertmanager:federator.dev.svg?server_fqdn=federator.dev)](https://matrix.to/#/#matrix-alertmanager:federator.dev)
-
-[![issue tracker](https://img.shields.io/badge/issue%20tracker-gitlab-orange.svg)](https://git.feneas.org/jaywink/matrix-alertmanager/issues)
-
-GitHub mirror: https://github.com/jaywink/matrix-alertmanager
+[![](https://img.shields.io/docker/pulls/jaywink/matrix-alertmanager.svg)](https://cloud.docker.com/u/jaywink/repository/docker/jaywink/matrix-alertmanager) [![](https://img.shields.io/matrix/matrix-alertmanager:federator.dev.svg?server_fqdn=federator.dev)](https://matrix.to/#/#matrix-alertmanager:federator.dev)
 
 # Matrix-Alertmanager
 
