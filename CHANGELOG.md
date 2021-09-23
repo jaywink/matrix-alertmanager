@@ -1,5 +1,11 @@
 # Changelog
 
+## unreleased
+
+### Changed
+
+- Webhook endpoint now supports payloads up to 1M (up from 100k) by Sebastian Hasler.
+
 ## 0.4.0 - 2020-12-04
 
 ### Changed
