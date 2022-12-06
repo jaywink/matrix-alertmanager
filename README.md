@@ -58,7 +58,7 @@ rules:
     team: dev
 ```
 
-NOTE! Currently the bot cannot talk HTTPS, so you need to have a reverse proxy in place to terminate SSL, or use unsecure unencrypted connections.
+NOTE! Currently, the bot cannot talk HTTPS, so you need to have a reverse proxy in place to terminate SSL, or use unsecure unencrypted connections.
 
 ## TODO
 
@@ -66,7 +66,7 @@ NOTE! Currently the bot cannot talk HTTPS, so you need to have a reverse proxy i
 
 ## Tech
 
-Node 14, Express, Matrix JS SDK
+Node 18, Express, Matrix JS SDK
 
 ## Help
 

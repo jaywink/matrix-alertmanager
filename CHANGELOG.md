@@ -6,6 +6,12 @@
 
 * Required NodeJS version is now 18
 
+### Changed
+
+* Docker image changed to base on Alpine to reduce size.
+
+* Various dependency updates.
+
 ## 0.5.0 - 2021-09-23
 
 ### Changed
