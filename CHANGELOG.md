@@ -1,5 +1,11 @@
 # Changelog
 
+## unreleased
+
+### Breaking
+
+* Required NodeJS version is now 18
+
 ## 0.5.0 - 2021-09-23
 
 ### Changed
