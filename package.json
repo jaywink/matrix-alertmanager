@@ -27,8 +27,8 @@
     "chai": "^4.3.4",
     "eslint": "^7.32.0",
     "mocha": "^9.2.2",
-    "nodemon": "^2.0.12",
-    "npm-check-updates": "^11.8.5",
+    "nodemon": "^2.0.20",
+    "npm-check-updates": "^16.4.3",
     "sinon": "^11.1.2"
   },
   "dependencies": {
