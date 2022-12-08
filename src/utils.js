@@ -2,7 +2,7 @@ const utils = {
 
     getBasicAuthPassword: req => {
         const content = req.get("Authorization").replace(/^Bearer /, '')
-        return atob(content).replace(/^prometheus:/, '')
+        return atob(content).replace(/^alertmanager:/, '')
     }
 
     getRoomForReceiver: receiver => {

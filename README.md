@@ -42,7 +42,7 @@ receivers:
 
 The secret key obviously should match the one in the alertmanager configuration.
 
-Alternatively, put the secret in a separate file and use basic auth with username `prometheus`:
+Alternatively, put the secret in a separate file and use basic auth with username `alertmanager`:
 
 ```yaml
 receivers:
@@ -51,7 +51,7 @@ receivers:
   - url: 'https://my-matrix-alertmanager.tld/alerts
     http_config:
       basic_auth:
-        username: prometheus
+        username: alertmanager
         password_file: /path/to/password.secret
 ```
 
