@@ -42,6 +42,19 @@ receivers:
 
 The secret key obviously should match the one in the alertmanager configuration.
 
+Alternatively, put the secret in a separate file and use basic auth with username `prometheus`:
+
+```yaml
+receivers:
+- name: 'myreceiver'
+  webhook_configs:
+  - url: 'https://my-matrix-alertmanager.tld/alerts
+    http_config:
+      basic_auth:
+        username: prometheus
+        password_file: /path/to/password.secret
+```
+
 ### Prometheus rules
 
 Add some styling to your prometheus rules
