@@ -1,5 +1,10 @@
 const utils = {
 
+    getBasicAuthPassword: req => {
+        const content = req.get("Authorization").replace(/^Bearer /, '')
+        return atob(content).replace(/^prometheus:/, '')
+    }
+
     getRoomForReceiver: receiver => {
         /*
         Get the right roomId for the given receiver from MATRIX_ROOMS configuration item.
