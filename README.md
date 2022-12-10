@@ -48,7 +48,7 @@ Alternatively, put the secret in a separate file and use basic auth with usernam
 receivers:
 - name: 'myreceiver'
   webhook_configs:
-  - url: 'https://my-matrix-alertmanager.tld/alerts
+  - url: 'https://my-matrix-alertmanager.tld/alerts'
     http_config:
       basic_auth:
         username: alertmanager
