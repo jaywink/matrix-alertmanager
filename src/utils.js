@@ -1,7 +1,7 @@
 const utils = {
 
     getBasicAuthPassword: req => {
-        const content = req.get("Authorization").replace(/^Bearer /, '')
+        const content = req.get("Authorization").replace(/^Basic /, '')
         return atob(content).replace(/^alertmanager:/, '')
     }
 
