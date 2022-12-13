@@ -3,7 +3,7 @@ const utils = {
     getBasicAuthPassword: req => {
         const content = req.get("Authorization").replace(/^Basic /, '')
         return atob(content).replace(/^alertmanager:/, '')
-    }
+    },
 
     getRoomForReceiver: receiver => {
         /*
