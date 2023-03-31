@@ -1,6 +1,6 @@
 {
   "name": "matrix-alertmanager",
-  "version": "0.7.0",
+  "version": "0.7.1",
   "description": "Prometheus Alertmanager bot for Matrix",
   "main": "src/app.js",
   "scripts": {

@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.7.1 - 2023-04-01
+
+### Changed
+
+* Various dependency updates
+
 ## 0.7.0 - 2023-01-13
 
 ### Added
