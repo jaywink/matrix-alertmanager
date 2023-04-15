@@ -25,10 +25,10 @@
   "license": "MIT",
   "devDependencies": {
     "chai": "^4.3.7",
-    "eslint": "^8.37.0",
+    "eslint": "^8.38.0",
     "mocha": "^10.2.0",
     "nodemon": "^2.0.22",
-    "npm-check-updates": "^16.9.0",
+    "npm-check-updates": "^16.10.8",
     "sinon": "^15.0.3"
   },
   "dependencies": {
