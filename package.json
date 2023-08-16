@@ -3,6 +3,7 @@
   "version": "0.7.2",
   "description": "Prometheus Alertmanager bot for Matrix",
   "main": "src/app.js",
+  "bin": "src/app.js",
   "scripts": {
     "dev": "node_modules/.bin/nodemon src/app.js localhost 3000",
     "test": "node_modules/.bin/mocha tests/",
