@@ -5,3 +5,6 @@ test:
 		--userns host \
 		node:18-alpine \
 		sh -c "npm install && npm run test"
+
+build:
+	docker build -t matrix-alertmanager .
