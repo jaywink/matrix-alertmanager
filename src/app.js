@@ -1,6 +1,7 @@
 const express = require('express')
 const client = require('./client')
 const routes = require('./routes')
+const log = require('./log')
 
 // Config
 require('dotenv').config()
@@ -13,14 +14,11 @@ app.get('/', routes.getRoot)
 app.post('/alerts', routes.postAlerts)
 // Initialize Matrix client
 client.init().then(() => {
-    // eslint-disable-next-line no-console
-    console.log('matrix-alertmanager initialized and ready')
+    log.info('matrix-alertmanager initialized and ready')
     app.listen(process.env.APP_PORT, () => {})
 }).catch(e => {
-    // eslint-disable-next-line no-console
-    console.error('initialization failed')
-    // eslint-disable-next-line no-console
-    console.error(e)
+    log.error('initialization failed')
+    log.error(e)
 })
 
 module.exports = app

@@ -1,5 +1,6 @@
 const matrix = require('matrix-js-sdk')
 const striptags = require('striptags')
+const log = require('./log')
 
 let joinedRoomsCache = []
 
@@ -12,7 +13,7 @@ const client = {
                     joinedRoomsCache.push(room.roomId)
                 }
             } catch (ex) {
-                console.warn(`Could not join room ${roomId} - ${ex}`)
+                log.warn(`Could not join room ${roomId} - ${ex}`)
             }
         }
     },
