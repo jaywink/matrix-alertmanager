@@ -8,7 +8,7 @@ COPY package*.json ./
 
 RUN npm install --only=production
 
-COPY . .
+COPY src /app/src
 
 EXPOSE 3000
 
