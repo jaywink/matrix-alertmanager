@@ -1,5 +1,6 @@
 const client = require('./client')
 const utils = require('./utils')
+const log = require('./log')
 
 const routes = {
     getRoot: (req, res) => {
@@ -11,16 +12,23 @@ const routes = {
             res.status(403).end()
             return
         }
+        if ( process.env.LOG_LEVEL === 'DEBUG' ) {
+            log.verbose(JSON.stringify(req.body))
+        }
         const alerts = utils.parseAlerts(req.body)
 
         if (!alerts) {
-            res.json({'result': 'no alerts found in payload'})
+            const msg = 'no alerts found in payload'
+            log.info(msg)
+            res.json({'result': msg})
             return
         }
 
         const roomId = utils.getRoomForReceiver(req.body.receiver)
         if (!roomId) {
-            res.json({'result': 'no rooms configured for this receiver'})
+            const msg = 'no rooms configured for this receiver'
+            log.info(msg)
+            res.json({'result': msg})
             return
         }
 
@@ -29,10 +37,9 @@ const routes = {
             await Promise.all(promises)
             res.json({'result': 'ok'})
         } catch (e) {
-            // eslint-disable-next-line no-console
-            console.error(e)
+            log.error(e)
             res.status(500)
-            res.json({'result': 'error'})
+            res.json({'result': 'error sending alert'})
         }
     },
 }

@@ -28,7 +28,6 @@ const utils = {
         Format a single alert into a message string.
          */
         let parts = []
-        //console.log(data)
 
         if (data.status === 'firing') {
             if (process.env.MENTION_ROOM === "1") {
@@ -44,7 +43,11 @@ const utils = {
                     return '#dc3545'; // red
                 }
               })(data.labels.severity);
-            parts.push('<strong><font color=\"' + color + '\">FIRING:</font></strong>')
+            if ( data.labels.severity !== undefined ) {
+              parts.push('<strong><font color=\"' + color + '\">' + data.labels.severity.toUpperCase() + ':</font></strong>')
+            } else {
+              parts.push('<strong><font color=\"' + color + '\">FIRING:</font></strong>')
+            }
         } else if (data.status === 'resolved') {
             parts.push('<strong><font color=\"#33cc33\">RESOLVED:</font></strong>')
         } else {
@@ -53,16 +56,33 @@ const utils = {
 
         // name and location of occurrence
         if (data.labels.alertname !== undefined) {
-            parts.push('<i>', data.labels.alertname, '</i>')
-            if (data.labels.host !== undefined || data.labels.instance !== undefined) {
-                parts.push(' at ')
+            if ( process.env.APP_ALERTMANAGER_URL !== undefined ) {
+                parts.push('<a href=\"'+process.env.APP_ALERTMANAGER_URL+'\"><i>', data.labels.alertname, '</i></a>')
+            } else {
+                parts.push('<i>', data.labels.alertname, '</i>')
+            }
+            if (data.labels.host !== undefined || data.labels.hostname !== undefined || data.labels.instance !== undefined) {
+                parts.push(' on ')
             }
         }
-        if (data.labels.host !== undefined) {
-            parts.push(data.labels.host)
-        } else if (data.labels.instance !== undefined) {
-            parts.push(data.labels.instance)
+
+        let host = data.labels.host || data.labels.hostname || data.labels.instance;
+
+        if (data.labels.parent !== undefined && data.labels.parent != host) {
+            parts.push(data.labels.parent + '/' + host)
+        } else {
+            parts.push(host)
         }
+
+        parts.push(' (')
+        let labels = new Set()
+        for (const [label, value] of Object.entries(data.labels)) {
+            if (['alertname', 'host', 'hostname', 'instance', 'parent', 'severity'].indexOf(label) == -1) {
+                labels.add(value)
+            }
+        }
+        parts.push(...labels)
+        parts.push(')')
 
         // additional descriptive content
         if (data.annotations.message !== undefined) {
@@ -71,7 +91,23 @@ const utils = {
         if (data.annotations.description !== undefined) {
             parts.push('<br>', data.annotations.description)
         }
-        parts.push('<br><a href="', data.generatorURL,'">Alert link</a>')
+        parts.push('<br><a href="'+ data.generatorURL +'">Alert link</a>')
+
+        if ( data.annotations.url !== undefined) {
+            parts.push(' | <a href="' + data.annotations.url + '">Other</a>')
+        } else if (
+                data.labels.hostname !== undefined
+                && process.env.APP_ALERTMANAGER_DEFAULT_DASHBOARD_URL !== undefined
+                ) {
+            let dashboard_url = process.env.APP_ALERTMANAGER_DEFAULT_DASHBOARD_URL
+            if (
+                    process.env.APP_ALERTMANAGER_DEFAULT_DASHBOARD_URL_APPEND_HOSTNAME !== undefined
+                    && process.env.APP_ALERTMANAGER_DEFAULT_DASHBOARD_URL_APPEND_HOSTNAME === 'true'
+                ) {
+                dashboard_url += data.labels.hostname
+            }
+            parts.push(' | <a href="' + dashboard_url + '">Dashboard</a>')
+        }
 
         return parts.join(' ')
     },
