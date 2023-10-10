@@ -61,7 +61,7 @@ receivers:
         password_file: /path/to/password.secret
 ```
 
-Note that the receiver `name` must match a configured recevier in the
+Note that the receiver `name` must match a configured receiver in the
 `MATRIX_ROOMS` env variable.
 
 Optional convenience links can be configured back to your alertmanager
