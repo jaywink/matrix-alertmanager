@@ -14,7 +14,7 @@ const utils = {
         const roomConfigs = process.env.MATRIX_ROOMS.split('|')
         let roomId = false
         for (let config of roomConfigs) {
-            const roomConfig = config.split('/')
+            const roomConfig = config.split(';')
             if (roomConfig[0] === receiver) {
                 roomId = roomConfig[1]
                 break
