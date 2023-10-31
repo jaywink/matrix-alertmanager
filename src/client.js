@@ -30,7 +30,7 @@ const client = {
         const joinedRooms = rooms.joined_rooms
         const roomConfigs = process.env.MATRIX_ROOMS.split('|')
         roomConfigs.forEach(async roomConfig => {
-            const room = roomConfig.split('/')
+            const room = roomConfig.split(';')
             if (joinedRooms.indexOf(room[1]) === -1) {
                 await this.ensureInRoom(room[1])
             }
