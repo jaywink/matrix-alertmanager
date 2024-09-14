@@ -3,16 +3,38 @@ const striptags = require('striptags')
 
 let joinedRoomsCache = []
 
+let roomRetryInfo = {}
+
 const client = {
     ensureInRoom: async function(roomId) {
+        const currentTime = Date.now();
+
+        if (!roomRetryInfo[roomId]) {
+            roomRetryInfo[roomId] = { lastAttempt: 0, retryCount: 0 };
+        }
+
+        const timeSinceLastAttempt = currentTime - roomRetryInfo[roomId].lastAttempt;
+
+        // Calculate the delay using exponential back-off, starting from 1 second (1000 ms).
+        // 2 ** retryCount will double the wait time with each failure.
+        const delay = Math.min((2 ** roomRetryInfo[roomId].retryCount) * 1000, 60000); // Cap delay at 60 seconds.
+
+        if (timeSinceLastAttempt < delay) {
+            return;
+        }
+
+        roomRetryInfo[roomId].lastAttempt = currentTime;
+
         if (joinedRoomsCache.indexOf(roomId === -1)) {
             try {
                 const room = await client.connection.joinRoom(roomId)
                 if (room) {
                     joinedRoomsCache.push(room.roomId)
+                    roomRetryInfo[roomId].retryCount = 0;
                 }
             } catch (ex) {
                 console.warn(`Could not join room ${roomId} - ${ex}`)
+                roomRetryInfo[roomId].retryCount++;
             }
         }
     },
