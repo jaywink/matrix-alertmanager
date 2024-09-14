@@ -79,7 +79,7 @@ NOTE! Currently, the bot cannot talk HTTPS, so you need to have a reverse proxy 
 
 ## Tech
 
-Node 18, Express, Matrix JS SDK
+Node 20, Express, Matrix JS SDK
 
 ## Help
 
