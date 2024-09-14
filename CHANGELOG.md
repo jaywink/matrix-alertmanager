@@ -1,5 +1,12 @@
 # Changelog
 
+## unreleased
+
+### Fixed
+
+* Receivers can now contain `/` to better support Prometheus-Operator (@siretart)
+* Room joins use exponential backoff on failures to avoid spamming the homeserver (@jelmer)
+
 ## 0.7.2 - 2023-04-15
 
 ### Changed
