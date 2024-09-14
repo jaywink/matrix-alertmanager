@@ -1,6 +1,6 @@
 const fixtures = {
     alerts: {
-        'receiver': 'receiver1',
+        'receiver': 'monitoring/default-receiver/matrix',
         'status': 'firing',
         'alerts': [{
             'status': 'firing',
