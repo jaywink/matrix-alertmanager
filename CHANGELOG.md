@@ -7,6 +7,11 @@
 * Receivers can now contain `/` to better support Prometheus-Operator (@siretart)
 * Room joins use exponential backoff on failures to avoid spamming the homeserver (@jelmer)
 
+### Changed
+
+* Required NodeJS version is now 20
+* Various dependency updates
+
 ## 0.7.2 - 2023-04-15
 
 ### Changed

@@ -19,22 +19,22 @@
     "bot"
   ],
   "engines": {
-    "node": ">= 18"
+    "node": ">= 20"
   },
   "author": "Jason Robinson",
   "license": "MIT",
   "devDependencies": {
-    "chai": "^4.3.7",
-    "eslint": "^8.38.0",
-    "mocha": "^10.2.0",
-    "nodemon": "^2.0.22",
-    "npm-check-updates": "^16.10.8",
-    "sinon": "^15.0.3"
+    "chai": "<5",
+    "eslint": "^9.10.0",
+    "mocha": "^10.7.3",
+    "nodemon": "^3.1.4",
+    "npm-check-updates": "^17.1.1",
+    "sinon": "^19.0.2"
   },
   "dependencies": {
-    "dotenv": "^16.0.3",
-    "express": "^4.18.2",
-    "matrix-js-sdk": "^24.1.0",
+    "dotenv": "^16.4.5",
+    "express": "^4.21.0",
+    "matrix-js-sdk": "^34.5.0",
     "striptags": "^3.2.0"
   }
 }

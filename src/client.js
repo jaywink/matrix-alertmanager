@@ -1,4 +1,3 @@
-const matrix = require('matrix-js-sdk')
 const striptags = require('striptags')
 
 let joinedRoomsCache = []
@@ -39,6 +38,7 @@ const client = {
         }
     },
     init: async function() {
+        const matrix = await import('matrix-js-sdk')
         // Init Matrix client
         this.connection = matrix.createClient({
             baseUrl: process.env.MATRIX_HOMESERVER_URL,
