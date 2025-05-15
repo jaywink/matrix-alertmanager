@@ -6,7 +6,10 @@ const routes = {
         res.send('Hey 👋')
     },
     postAlerts: async (req, res) => {
-        const secret = req.query.secret || utils.getBasicAuthPassword(req)
+        let secret = req.query.secret
+        if (!secret && req.get("Authorization")) {
+            secret = utils.getBasicAuthPassword(req)
+        }
         if (secret !== process.env.APP_ALERTMANAGER_SECRET) {
             res.status(403).end()
             return
