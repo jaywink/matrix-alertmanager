@@ -71,6 +71,9 @@ const utils = {
         if (data.annotations.description !== undefined) {
             parts.push('<br>', data.annotations.description)
         }
+        if (data.annotations.summary !== undefined && data.annotations.description === undefined) {
+            parts.push('<br>', data.annotations.summary)
+        }
         // Add custom links if configured
         if (process.env.ALERT_LINKS) {
             const linkConfigs = process.env.ALERT_LINKS.split('|')
