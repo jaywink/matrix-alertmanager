@@ -102,10 +102,10 @@ const utils = {
                     }
 
                     url = url.replace(/{labels\.([^}]+)}/g, (match, labelName) => {
-                        return data.labels[labelName] || ''
+                        return encodeURIComponent(data.labels[labelName] || '')
                     })
                     url = url.replace(/{annotations\.([^}]+)}/g, (match, annotationName) => {
-                        return data.annotations[annotationName] || ''
+                        return encodeURIComponent(data.annotations[annotationName] || '')
                     })
                     parts.push('<br><a href="', url, '">', name, '</a>')
                 }
