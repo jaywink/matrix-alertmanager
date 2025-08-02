@@ -1,5 +1,19 @@
 # Changelog
 
+## 0.9.0 - 2025-08-03
+
+### Added
+
+* Add support for custom links (@Erethon)
+
+### Fixed
+
+* Fix DoS when a request is made without auth header (@Erethon)
+
+### Changed
+
+* Various dependency updates
+
 ## 0.8.0 - 2024-09-15
 
 ### Fixed
