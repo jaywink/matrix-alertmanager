@@ -17,13 +17,15 @@ const routes = {
         const alerts = utils.parseAlerts(req.body)
 
         if (!alerts) {
-            res.json({'result': 'no alerts found in payload'})
+            res.status(400)
+            res.json({'result': 'no alerts found in payload'})            
             return
         }
 
         const roomId = utils.getRoomForReceiver(req.body.receiver)
         if (!roomId) {
-            res.json({'result': 'no rooms configured for this receiver'})
+            res.status(400)
+            res.json({'result': 'no rooms configured for this receiver'})            
             return
         }
 
