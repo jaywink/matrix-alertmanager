@@ -1,5 +1,12 @@
 # Changelog
 
+## unreleased
+
+### Changed
+
+* Required NodeJS version is now 22
+* Various dependency updates
+
 ## 0.9.0 - 2025-08-03
 
 ### Added

@@ -19,7 +19,7 @@
     "bot"
   ],
   "engines": {
-    "node": ">= 20"
+    "node": ">= 22"
   },
   "author": "Jason Robinson",
   "license": "MIT",
