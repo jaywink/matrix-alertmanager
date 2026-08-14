@@ -24,17 +24,17 @@
   "author": "Jason Robinson",
   "license": "MIT",
   "devDependencies": {
-    "chai": "<5",
-    "eslint": "^9.10.0",
-    "mocha": "^10.7.3",
-    "nodemon": "^3.1.4",
-    "npm-check-updates": "^17.1.1",
-    "sinon": "^19.0.2"
+    "chai": "^6",
+    "eslint": "^10.8.1",
+    "mocha": "^11.8.0",
+    "nodemon": "^3.1.14",
+    "npm-check-updates": "^23.0.2",
+    "sinon": "^22.1.0"
   },
   "dependencies": {
-    "dotenv": "^16.4.5",
-    "express": "^4.22.2",
-    "matrix-js-sdk": "^34.5.0",
+    "dotenv": "^17.4.2",
+    "express": "^5.2.1",
+    "matrix-js-sdk": "^42.2.0-rc.2",
     "striptags": "^3.2.0"
   }
 }
